@@ -1,4 +1,4 @@
-version: '3'
+version: '2'
 
 services:
   direwolf:
@@ -12,5 +12,5 @@ services:
       - ./direwolf.conf:/direwolf/direwolf.conf
     devices:
       - /dev/snd:/dev/snd
-      - /dev/gpiomem:/dev/gpiomem
+      - /dev/hidraw1:/dev/hidraw1
     restart: unless-stopped

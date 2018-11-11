@@ -1,0 +1,90 @@
+diff --git a/textcolor.c b/textcolor.c
+index e518b93..0059700 100644
+--- a/textcolor.c
++++ b/textcolor.c
+@@ -120,19 +120,19 @@ static const char clear_eos[]	= "\e[0J";
+ 
+ /* If you do get blinking, remove all references to "\e[5;47m" */
+ 
+-static const char background_white[] = "\e[5;47m";
++static const char background_white[] = "";
+ 
+ /* Whenever a dark color is used, the */
+ /* background is reset and needs to be set again. */
+ 
+-static const char black[]	= "\e[0;30m" "\e[5;47m";
+-static const char red[] 	= "\e[1;31m" "\e[5;47m";
+-static const char green[] 	= "\e[1;32m" "\e[5;47m";
+-//static const char yellow[] 	= "\e[1;33m" "\e[5;47m";
+-static const char blue[] 	= "\e[1;34m" "\e[5;47m";
+-static const char magenta[] 	= "\e[1;35m" "\e[5;47m";
+-//static const char cyan[] 	= "\e[1;36m" "\e[5;47m";
+-static const char dark_green[]	= "\e[0;32m" "\e[5;47m";
++static const char black[]	= "\e[0;37m";
++static const char red[] 	= "\e[1;31m";
++static const char green[] 	= "\e[1;32m";
++//static const char yellow[] 	= "\e[1;33m" ;
++static const char blue[] 	= "\e[1;34m";
++static const char magenta[] 	= "\e[1;35m";
++//static const char cyan[] 	= "\e[1;36m";
++static const char dark_green[]	= "\e[0;32m";
+ 
+ /* Clear from cursor to end of screen. */
+ 
+@@ -144,38 +144,38 @@ static const char clear_eos[]	= "\e[0J";
+ #if 1		/* new in version 1.2, as suggested by IW2DHW */
+ 		/* Test done using gnome-terminal and xterm */
+ 
+-static const char background_white[] = "\e[48;2;255;255;255m";
++static const char background_white[] = "";
+ 
+ /* Whenever a dark color is used, the */
+ /* background is reset and needs to be set again. */
+ 
+ 
+-static const char black[]	= "\e[0;30m" "\e[48;2;255;255;255m";
+-static const char red[] 	= "\e[0;31m" "\e[48;2;255;255;255m";
+-static const char green[] 	= "\e[0;32m" "\e[48;2;255;255;255m";
+-//static const char yellow[] 	= "\e[0;33m" "\e[48;2;255;255;255m";
+-static const char blue[] 	= "\e[0;34m" "\e[48;2;255;255;255m";
+-static const char magenta[] 	= "\e[0;35m" "\e[48;2;255;255;255m";
+-//static const char cyan[] 	= "\e[0;36m" "\e[48;2;255;255;255m";
+-static const char dark_green[]	= "\e[0;32m" "\e[48;2;255;255;255m";
++static const char black[]	= "\e[0;37m";
++static const char red[] 	= "\e[0;31m";
++static const char green[] 	= "\e[0;32m";
++//static const char yellow[] 	= "\e[0;33m";
++static const char blue[] 	= "\e[0;34m";
++static const char magenta[] 	= "\e[0;35m";
++//static const char cyan[] 	= "\e[0;36m";
++static const char dark_green[]	= "\e[0;32m";
+ 
+ 
+ #else 		/* from version 1.1 */
+ 
+ 
+-static const char background_white[] = "\e[47;1m";
++static const char background_white[] = "";
+ 
+ /* Whenever a dark color is used, the */
+ /* background is reset and needs to be set again. */
+ 
+-static const char black[]	= "\e[0;30m" "\e[1;47m";
+-static const char red[] 	= "\e[1;31m" "\e[1;47m";
+-static const char green[] 	= "\e[1;32m" "\e[1;47m"; 
+-//static const char yellow[] 	= "\e[1;33m" "\e[1;47m";
+-static const char blue[] 	= "\e[1;34m" "\e[1;47m";
+-static const char magenta[] 	= "\e[1;35m" "\e[1;47m";
+-//static const char cyan[] 	= "\e[1;36m" "\e[1;47m";
+-static const char dark_green[]	= "\e[0;32m" "\e[1;47m";
++static const char black[]	= "\e[0;37m";
++static const char red[] 	= "\e[1;31m";
++static const char green[] 	= "\e[1;32m"; 
++//static const char yellow[] 	= "\e[1;33m";
++static const char blue[] 	= "\e[1;34m";
++static const char magenta[] 	= "\e[1;35m";
++//static const char cyan[] 	= "\e[1;36m";
++static const char dark_green[]	= "\e[0;32m";
+ 
+ 
+ #endif
