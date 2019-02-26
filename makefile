@@ -6,6 +6,7 @@ include ~/.ssh/container-secrets.txt
 
 # Basic container setup
 VM_NAME=$(shell /usr/bin/awk '/container_name: / {print $$2;}' docker-compose.yaml)
+DATA_VOLUME=${VM_NAME}_data
 TIMESTAMP=$(shell date +"%Y%m%dT%H%M%S")
 
 # For container backups
@@ -42,6 +43,8 @@ build:
 run: container
 
 container:
+	#docker-compose up --no-start
+	#docker cp direwolf.conf ${VM_NAME}:/direwolf/direwolf.conf
 	docker-compose up -d
 
 # Start an already existing container that has been stopped

@@ -11,9 +11,10 @@ RUN apk add --no-cache git alsa-lib alsa-lib-dev linux-headers build-base eudev-
     CFLAGS=-D__FreeBSD__ make && make install && \
     cd / && rm -r /tmp/direwolf /usr/include/sys/unistd.h && rm /tmp/textcolor.patch && \
     find /usr/local/bin -type f -exec strip -p --strip-debug {} \; && \
-    apk del git alsa-lib-dev linux-headers build-base eudev-dev
+    apk del git alsa-lib-dev linux-headers build-base eudev-dev && \
+	mkdir -p /direwolf
 
-VOLUME /direwolf
+#COPY direwolf.conf /direwolf/direwolf.conf
 WORKDIR /direwolf
 
 CMD direwolf -c /direwolf/direwolf.conf
