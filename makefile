@@ -33,9 +33,6 @@ restore: distclean
 test:
 	@echo "test: Not Implemented"
 
-password:
-	docker run --rm httpd:2.4-alpine htpasswd -nbB admin <password> | cut -d ":" -f 2
-
 build:
 	docker-compose build
 

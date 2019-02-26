@@ -5,6 +5,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    image: stephenhouser/direwolf:latest
     tty: true
     stdin_open: true
     container_name: direwolf
