@@ -10,9 +10,9 @@ services:
     container_name: direwolf
     volumes:
       - ./direwolf.conf:/direwolf/direwolf.conf
-#    devices:
-#      - /dev/snd:/dev/snd
-#      - /dev/hidraw1:/dev/hidraw1
-#      - /dev/hidraw4:/dev/hidraw4
-#      - /dev/hidraw3:/dev/hidraw3
+    devices:
+      - /dev/snd:/dev/snd
+      - /dev/hidraw1:/dev/hidraw1
+      - /dev/hidraw2:/dev/hidraw2
+      - /dev/hidraw3:/dev/hidraw3
     restart: unless-stopped
