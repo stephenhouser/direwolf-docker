@@ -2,15 +2,15 @@ version: '2'
 
 services:
   direwolf:
-    build:
-      context: .
-      dockerfile: Dockerfile
+    #build:
+    #  context: .
+    #  dockerfile: Dockerfile
     image: stephenhouser/direwolf:latest
     tty: true
     stdin_open: true
     container_name: direwolf
     volumes:
-      - ./direwolf.conf:/direwolf/direwolf.conf
+      - ./direwolf-N1SH.conf:/direwolf/direwolf.conf
     devices:
       - /dev/snd:/dev/snd
       - /dev/hidraw1:/dev/hidraw1

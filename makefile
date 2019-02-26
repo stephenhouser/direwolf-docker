@@ -9,6 +9,8 @@ VM_NAME=$(shell /usr/bin/awk '/container_name: / {print $$2;}' docker-compose.ya
 DATA_VOLUME=${VM_NAME}_data
 TIMESTAMP=$(shell date +"%Y%m%dT%H%M%S")
 
+IMAGE=$(shell /usr/bin/awk '/image: / {print $$2;}' docker-compose.yaml)
+
 # For container backups
 LAST_BACKUP=$(shell ls -t ${VM_NAME}-*.sql.gz | head -n1)
 BACKUP_FILE=${VM_NAME}-${TIMESTAMP}.sql.gz
@@ -34,7 +36,12 @@ test:
 	@echo "test: Not Implemented"
 
 build:
-	docker-compose build
+	docker build -t ${IMAGE} .
+	#docker tag ${IMAGE} localhost:5000/${IMAGE}
+
+push:
+	docker push ${IMAGE}
+	#docker push localhost:5000/${IMAGE}
 
 # Make (and start) the container
 run: container
