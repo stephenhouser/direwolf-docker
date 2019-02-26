@@ -2,9 +2,6 @@ version: '2'
 
 services:
   direwolf:
-    #build:
-    #  context: .
-    #  dockerfile: Dockerfile
     image: stephenhouser/direwolf:latest
     tty: true
     stdin_open: true

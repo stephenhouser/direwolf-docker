@@ -1,80 +1,19 @@
-# Dire Wolf #
+# Dire Wolf Docker Container
 
-### Decoded Information from Radio Emissions for Windows Or Linux Fans ###
+Dire Wolf is a software sound-card for Amateur Radio packet modem (or TNC) and APRS encoding and decoding. It can be used stand-alone to observe APRS traffic, as a tracker, digipeater, APRStt gateway, or Internet Gateway (IGate). For more information refer to [wb2osz/direwolf](https://github.com/wb2osz/direwolf).
 
-In the early days of Amateur Packet Radio, it was necessary to use an expensive “Terminal Node Controller” (TNC) with specialized hardware.  Those days are gone.  You can now get better results at lower cost by connecting your radio to the “soundcard” interface of a computer and using software to decode the signals.
+This repository is a Docker packaged version of Dire Wolf with a few modifications to remove some of the terminal font coloring and have it work properly on my Ubuntu Linux system (16.04 LTS). It was  forked from [f4hlv/direwolf-docker](https://github.com/f4hlv/direwolf-docker).
 
-Why settle for mediocre receive performance from a 1980's technology  TNC using an old modem chip?   Dire Wolf decodes over 1000 error-free frames from Track 2 of the [WA8LMF TNC Test CD](https://github.com/wb2osz/direwolf/tree/dev/doc/WA8LMF-TNC-Test-CD-Results.pdf), leaving all the hardware TNCs, and first generation "soundcard" modems, behind in the dust.
+## Running The Container
 
-![](tnc-test-cd-results.png)
+The included `docker-compose.yaml` gives a good overview of how I run this container and the devices/volumes that need to be mapped for proper communication with the underlying devices. The one trick is mapping the `/dev/hidrawX` device if you are using a sound-card with Push To Talk (PTT) control from Dire Wolf. More detail on device configuration is beyond the scope of this documentation, however the Dire Wolf manual can be of some assistance.
 
- 
-Dire Wolf is a modern software replacement for the old 1980's style TNC built with special hardware.
+Here's an example of running using a properly configured `direwolf.conf` with a CM108-based sound-card that has been [modified to allow PTT](http://www.garydion.com/projects/usb_fob/).
 
-Without any additional software, it can perform as:
-
- - APRS GPS Tracker
- - Digipeater
- - Internet Gateway (IGate)
-- [APRStt](http://www.aprs.org/aprstt.html) gateway
-
-
-It can also be used as a virtual TNC for other applications such as [APRSIS32](http://aprsisce.wikidot.com/), [UI-View32](http://www.ui-view.net/), [Xastir](http://xastir.org/index.php/Main_Page), [APRS-TW](http://aprstw.blandranch.net/), [YAAC](http://www.ka2ddo.org/ka2ddo/YAAC.html), [UISS](http://users.belgacom.net/hamradio/uiss.htm), [Linux AX25](http://www.linux-ax25.org/wiki/Main_Page), [SARTrack](http://www.sartrack.co.nz/index.html), [RMS Express](http://www.winlink.org/RMSExpress), [BPQ32](http://www.cantab.net/users/john.wiseman/Documents/BPQ32.html), [Outpost PM](http://www.outpostpm.org/), and many others.
-
-# Install Docker
-```console
-$ curl -fsSL get.docker.com -o get-docker.sh
-$ sudo sh get-docker.sh
 ```
-
-# Install docker-compose
-* (Debian)
-```console
-$ sudo curl -L https://github.com/docker/compose/releases/download/1.21.0/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose
-$ chmod +x /usr/local/bin/docker-compose
-```
-
-* (Raspberry)
-```console
-$ sudo apt-get -y install python-setuptools
-$ sudo easy_install pip && sudo pip install docker-compose
-```
-
-# Build and Run direwolf
-```console
-$ git clone https://github.com/f4hlv/direwolf-docker.git
-$ cd direwolf-docker
-```
-Edit docker-compose.yml and run
-```console
-$ docker-compose up -d
-```
-## Volume
-- `./direwolf.conf:/direwolf/direwolf.conf` Path to the direwolf.conf File
-
-# Update
-```console
-$ docker-compose build --no-cache
-$ docker-compose up -d
-```
-
-# docker-compose
-```yml
-version: '3.7'
-
-services:
-  direwolf:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    tty: true
-    stdin_open: true
-    container_name: direwolf
-    volumes:
-      - ./direwolf.conf/direwolf.conf:/direwolf/direwolf.conf
-    devices:
-      - /dev/snd:/dev/snd
-      - /dev/gpiomem:/dev/gpiomem
-#    privileged: true
-    restart: unless-stopped
+docker run -d \
+    --volume direwolf.conf:/direwolf/direwolf.conf \
+    --device=/dev/snd:/dev/snd \
+    --device=/dev/hidraw1:/dev/hidraw1 \
+    stephenhouser/direwolf direwolf \
 ```
