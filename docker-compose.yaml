@@ -8,9 +8,10 @@ services:
     container_name: direwolf
     volumes:
       - ./direwolf-N1SH.conf:/direwolf/direwolf.conf
+#   This might work with docker-compose v3 files instead of udev rule and /dev/cm108
+#    device_cgroup_rules:
+#        - 'c 244:* rw'
     devices:
       - /dev/snd:/dev/snd
-      - /dev/hidraw1:/dev/hidraw1
-      - /dev/hidraw2:/dev/hidraw2
-      - /dev/hidraw3:/dev/hidraw3
+      - /dev/cm108:/dev/cm108
     restart: unless-stopped

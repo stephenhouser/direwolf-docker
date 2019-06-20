@@ -14,6 +14,20 @@ Here's an example of running using a properly configured `direwolf.conf` with a 
 docker run -d \
     --volume direwolf.conf:/direwolf/direwolf.conf \
     --device=/dev/snd:/dev/snd \
-    --device=/dev/hidraw1:/dev/hidraw1 \
+    --device=/dev/cm108:/dev/cm108 \
     stephenhouser/direwolf direwolf \
 ```
+
+## CM108 Device for PTT
+
+I've included a `udev` rule for the CM108 device that I have which adds a `/dev/cm108` device on the *host* system. This saves the hassle of changing device nodes when the host restarts and maps the CM108 to a known device node that can then be specified in the `direwolf.conf` file in the *container*. 
+
+The file `90-cm108.rules` should be copied into the `/etc/udev/rules.d` directory on the *host*.
+Then either reboot or reload the `udev` rules with the following command:
+
+```
+udevadm control --reload-rules && udevadm trigger
+```
+
+You should now see `/dev/cm108` on the *host* which can be mapped to the container and used for Push To Talk (PTT).
+

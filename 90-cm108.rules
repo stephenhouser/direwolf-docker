@@ -1,0 +1,3 @@
+
+#KERNEL=="hidraw*"
+SUBSYSTEM=="hidraw", ATTRS{idVendor}=="0d8c", ATTRS{idProduct}=="000c", SYMLINK+="cm108"
