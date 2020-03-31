@@ -6,6 +6,8 @@ services:
     tty: true
     stdin_open: true
     container_name: direwolf
+    ports:
+      - "8888:8000"
     volumes:
       - ./direwolf-N1SH.conf:/direwolf/direwolf.conf
 #   This might work with docker-compose v3 files instead of udev rule and /dev/cm108
