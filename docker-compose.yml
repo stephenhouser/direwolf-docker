@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  direwolf:
+    image: stephenhouser/direwolf:latest
+    container_name: direwolf
+    tty: true
+    stdin_open: true
+    ports:
+      - "8888:8000"
+    volumes:
+      - /share/homes/houser/direwolf/direwolf-N1SH.conf:/direwolf/direwolf.conf
+    devices:
+      - /dev/snd:/dev/snd
+#    restart: unless-stopped
+
+
