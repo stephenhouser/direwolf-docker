@@ -12,10 +12,10 @@ Here's an example of running using a properly configured `direwolf.conf` with a 
 
 ```
 docker run -d \
-    --volume direwolf.conf:/direwolf/direwolf.conf \
+    --volume direwolf-N1SH.conf:/etc/direwolf.conf \
     --device=/dev/snd:/dev/snd \
-    --device=/dev/cm108:/dev/cm108 \
-    stephenhouser/direwolf direwolf \
+    --device=/dev/hidraw0:/dev/cm108 \
+    stephenhouser/direwolf:latest direwolf \
 ```
 
 ## CM108 Device for PTT
