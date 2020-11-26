@@ -17,5 +17,5 @@ RUN apk add --no-cache git alsa-lib alsa-lib-dev linux-headers build-base eudev-
 #COPY direwolf.conf /direwolf/direwolf.conf
 WORKDIR /direwolf
 
-CMD direwolf -c /direwolf/direwolf.conf
+CMD direwolf -t 0 -c /direwolf/direwolf.conf
 
