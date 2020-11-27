@@ -7,6 +7,7 @@ services:
     stdin_open: true
     ports:
       - "8888:8000"
+      - "8889:8001"
     volumes:
       - /share/homes/houser/containers/direwolf/direwolf-N1SH.conf:/etc/direwolf.conf
     devices:
